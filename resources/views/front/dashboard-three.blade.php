@@ -14,9 +14,27 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class=" lead">
+                        Name : {{Auth::user()->name}}<br>
+                        Role :
+                        @foreach (Auth::user()->roles as $item)
+                          <span class=" badge badge-success">{{ $item->name }}</span> &nbsp;
+                        @endforeach
+                    </div><br>
                 </div>
             </div>
+            <hr>
+            @foreach (Auth::user()->roles as $role)
+            @if ($role->name == 'Supervisor')
+                <a href="{{url('admin/managers')}}" class="btn btn-primary">Dashboard One</a>
+            @endif
+            @if ($role->name == 'Staff')
+                <a href="{{url('admin/staffs')}}" class="btn btn-primary">Dashboard Two</a>
+            @endif
+            @if ($role->name == 'User')
+                <a href="{{url('admin/normal-users')}}" class="btn btn-primary">Dashboard Three</a>
+            @endif
+        @endforeach
         </div>
     </div>
 </div>

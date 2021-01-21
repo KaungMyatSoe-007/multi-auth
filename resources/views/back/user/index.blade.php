@@ -28,10 +28,14 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{url('admin/users/'.$item->id.'/edit')}}"
-                                class="btn btn-sm btn-info">
-                                Manage Role
-                            </a>
+                            @foreach (Auth::user()->roles as $role)
+                            @if ($role->name == 'Manager')
+                                <a href="{{url('admin/users/'.$item->id.'/edit')}}"
+                                    class="btn btn-sm btn-info">
+                                    Manage Role
+                                </a>
+                            @endif
+                            @endforeach
                         </td>
                     </tr>
                      @endforeach
